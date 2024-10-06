@@ -51,3 +51,15 @@
 ## doDispatcher
 
 **一个非JSP请求进入服务器后，会被直接转发到 DispatcherServlet，DispatcherServlet 会遍历调用 RequestMapping 来获取 HandlerMethodChain 对象，然后再遍历调用 Adapter 来获取合适的 Adapter 对象，接着执行 chain 中的 Interceptor 的 preHandler 方法，后用 adapter 对象来执行 handler method，handler method 会在 adapter 中 被添加增强 argument resolver，return value handler 和 init binder 来封装成 servlet invocable handler method ，在处理器执行前会 经历 Controller Advice 的全局的 model，init binder 和 request body 增强，在经历 参数处理，参数类型转换，然后 handler 执行，其返回值会被 return value handler 处理，然后被 Controller Advice 的 ResponseBody 全局增强，接着执行 chain 的 Interceptor 的 postHandler 方法，如果通过则会进行可能的异常处理处理器进行异常处理，然后执行 ControllerAdvice 的符合条件的 ExceptionHandler 方法，最后执行可能的视图渲染和 chain 中的 Interceptor 的 afterCompletion 方法**
+
+
+
+
+
+# 编写流程
+
+1. **完成各个接口的定义**
+2. **完成中间件对基础件的收集逻辑**
+3. **完成中间件的处理逻辑**
+4. **完成 dispatcher 的初始化方法**
+5. **完成 doDispatcher 方法**
